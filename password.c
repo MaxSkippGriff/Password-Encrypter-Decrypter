@@ -63,7 +63,6 @@ void start_password(void)
 */
 void save_password(void)
 {
-   FILE *fp;
    char password[100], ref[100], encrypt[100], key[100], decrypt[100];
 
    printf("\nEnter your name: ");
@@ -73,6 +72,14 @@ void save_password(void)
 
    key_generator(key,strlen(password));
    decryption(password, encrypt, key);
+   return_password(password, ref, encrypt, key, decrypt);
+}
+
+
+void return_password(char password[100], char ref[100], char encrypt[100],
+                   char key[100], char decrypt[100])
+{
+   FILE *fp;
 
    printf("\nName: %s", ref);
    printf("\nKey: %s", key);
@@ -150,7 +157,7 @@ void display_names(char password[100], char ref[100], char encrypt[100],
       }
    }
 
-    start_program(password, ref, encrypt, key, decrypt);
+   start_program(password, ref, encrypt, key, decrypt);
 }
 
 /*

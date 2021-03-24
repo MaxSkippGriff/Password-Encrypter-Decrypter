@@ -11,6 +11,8 @@
 
 void start_password(void);
 
+void return_password(char password[100], char ref[100], char encrypt[100], char key[100], char decrypt[100]);
+
 void start_program(char password[100], char ref[100], char encrypt[100], char key[100], char decrypt[100]);
 
 void save_password(void);
