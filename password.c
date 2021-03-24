@@ -3,8 +3,7 @@
    -----------------------------------
 
    This is a very basic password encryption/decryption
-   program. It uses an XOR cipher to encrypt the password
-   data.
+   program which utilises an XOR cipher.
 
 */
 
