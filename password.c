@@ -54,11 +54,10 @@ void start_password(void)
    save_password();
 
    delete_pass();
-
 }
 
 /*
-	  A random string is generated using the key generator. The
+   A random string is generated using the key generator. The
    key is then passed to 'decryption' and the resulting string is
    written to the password store.
 */
@@ -80,12 +79,14 @@ void save_password(void)
    printf("\nEncrypted: %s", encrypt);
 
    fp=fopen("oldPass.txt","a");
+
    if(fp == NULL){
-	     printf("Searching...can't find anything.\n");
+      printf("Searching...can't find anything.\n");
    }
    else{
-	     fprintf(fp,"%s %s %s", ref, encrypt, key);
+      fprintf(fp,"%s %s %s", ref, encrypt, key);
    }
+
    fclose(fp);
    printf("\n\nYour password has been encrypt and saved.\n");
 
@@ -119,13 +120,14 @@ void open_password(char password[100], char ref[100], char encrypt[100],
           }
       }
    }
+
    printf("Your decrypt password is: %s", decrypt);
 
    display_names(password, ref, encrypt, key, decrypt);
 }
 
 /*
-	  The password store is read and the references are printed
+   The password store is read and the references are printed
    unit the end of file.
 */
 
@@ -171,7 +173,7 @@ extern void key_generator(char *key, int n)
 }
 
 /*
-	  Decryption implements the XOR cipher. The result is stored into
+   Decryption implements the XOR cipher. The result is stored into
    output.
 */
 void decryption(char *input, char *output, char *key)
@@ -196,10 +198,10 @@ void start_program(char password[100], char ref[100], char encrypt[100],
    FILE *fp;
    int i;
 
-  	printf("\nTo start the program, enter your name: ");
-  	scanf("%s", name);
+   printf("\nTo start the program, enter your name: ");
+   scanf("%s", name);
    printf("Enter your password: ");
-  	scanf("%s", password);
+   scanf("%s", password);
 
    fp=fopen("oldPass.txt","r");
 
@@ -214,6 +216,7 @@ void start_program(char password[100], char ref[100], char encrypt[100],
          }
       }
    }
+
    decryption(encrypt, decrypt, key);
 
    while(strcmp(password, decrypt)!=0){
@@ -226,7 +229,7 @@ void start_program(char password[100], char ref[100], char encrypt[100],
 
 
 /*
-	  Deletes the password store.
+   Deletes the password store.
 */
 void delete_pass()
 {
