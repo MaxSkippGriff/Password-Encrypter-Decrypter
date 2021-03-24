@@ -10,9 +10,10 @@ The cipher works in the following way. First a random key is generated. Then, XO
 an encrypted output. To decrypt this output, the XOR operation is run again, that is, you only write a 1 if the
 bits are exclusively different, for e.g.,
 
-   1 0 0 1
+   1 0 0 1  
+
    0 1 0 1
-   
+
    1 1 0 0
 
 
