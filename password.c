@@ -4,33 +4,7 @@
 
    This is a very basic password encryption/decryption
    program. It uses an XOR cipher to encrypt the password
-   data. This works in the following way. First a random key
-   is generated. Then, XOR is done using that key to create
-   an encrypted output. To decrypt this output, the XOR
-   operation is run again, that is, you only write a 1 if the
-   bits are exclusively different, for e.g.,
-
-   1 0 0 1
-   0 1 0 1
-   -------
-   1 1 0 0
-
-   This is very basic, and requires refinement.
-
-   First, you'll be prompted to enter your name and
-   password. Then you'll be shown the name, key and the
-   encryption output of your password. This data is stored
-   in the file "oldPass.txt".
-
-   I have included a delete function to delete passwords
-   after they've been used.
-
-   Continue this process and try out different passwords.
-   It's a little bit laborous, but that's the nature of the
-   password manager beast.
-
-   NB:- Please don't use special characters - the password
-   decryption only decodes upper/lowercase letters and numbers.
+   data.
 
 */
 
@@ -58,7 +32,7 @@ void start_password(void)
 
 /*
    A random string is generated using the key generator. The
-   key is then passed to 'decryption' and the resulting string is
+   key is passed to 'decryption' and the resulting string is
    written to the password store.
 */
 void save_password(void)
@@ -101,9 +75,9 @@ void return_password(char password[100], char ref[100], char encrypt[100],
 }
 
 /*
-   After prompting the user to enter the ref, password vault
-   is opened and the refs are compared. When found, the encrypt
-   string and the key is passed to decryption() for decrypting
+   After checking ref, password store is opened and refs are
+   compared. When found, the encrypt string and the key are
+   decrypted.
 */
 void open_password(char password[100], char ref[100], char encrypt[100],
                    char key[100], char decrypt[100])
@@ -137,7 +111,6 @@ void open_password(char password[100], char ref[100], char encrypt[100],
    The password store is read and the references are printed
    unit the end of file.
 */
-
 void display_names(char password[100], char ref[100], char encrypt[100],
                    char key[100], char decrypt[100])
 {
@@ -161,9 +134,8 @@ void display_names(char password[100], char ref[100], char encrypt[100],
 }
 
 /*
-   With the help of rand() from stdlib.h, a random character
-   from the character array is taken is repeated n times to
-   create a random string of length n.
+   Random character from array is taken. This is repeated n
+   times to create a random string of length n.
 */
 extern void key_generator(char *key, int n)
 {
@@ -180,8 +152,8 @@ extern void key_generator(char *key, int n)
 }
 
 /*
-   Decryption implements the XOR cipher. The result is stored into
-   output.
+   Decryption implements the XOR cipher. The result is stored
+   into output.
 */
 void decryption(char *input, char *output, char *key)
 {
@@ -196,8 +168,10 @@ void decryption(char *input, char *output, char *key)
    output[i]='\0';
 }
 
-
-
+/*
+  This function comes before whatever program you require
+  this password manager for.
+*/
 void start_program(char password[100], char ref[100], char encrypt[100],
                   char key[100], char decrypt[100])
 {
@@ -233,7 +207,6 @@ void start_program(char password[100], char ref[100], char encrypt[100],
    printf("Decrypted password %s matches password %s. \n",
           decrypt, password);
 }
-
 
 /*
    Deletes the password store.
