@@ -70,7 +70,7 @@ void return_password(char password[100], char ref[100], char encrypt[100],
    }
 
    fclose(fp);
-   printf("\n\nYour password has been encrypt and saved.\n");
+   printf("\n\nYour password has been encrypted and saved.\n");
 
    open_password(password, ref, encrypt, key, decrypt);
 }
@@ -91,6 +91,7 @@ void open_password(char password[100], char ref[100], char encrypt[100],
    scanf("%s", name);
 
    fp=fopen("oldPass.txt","r");
+
    if(fp == NULL){
       printf("File failed to open");
    }
@@ -110,7 +111,7 @@ void open_password(char password[100], char ref[100], char encrypt[100],
 
 /*
    The password store is read and the references are printed
-   unit the end of file.
+   unil the end of file.
 */
 void display_names(char password[100], char ref[100], char encrypt[100],
                    char key[100], char decrypt[100])
@@ -166,6 +167,7 @@ void decryption(char *input, char *output, char *key)
    for(i = 0; i < len; i++){
       output[i] = input[i] ^ key[i];
    }
+
    output[i]='\0';
 }
 
@@ -205,6 +207,7 @@ void start_program(char password[100], char ref[100], char encrypt[100],
       printf("Incorrect entry. Please try again: ");
       scanf("%s", password);
    }
+
    printf("Decrypted password %s matches password %s. \n",
           decrypt, password);
 }
