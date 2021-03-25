@@ -7,6 +7,8 @@
    decryption program which utilises an XOR
    cipher.
 
+   All code is ANSI C90 compliant.
+
 */
 
 
@@ -33,7 +35,7 @@ void start_password(void)
 
 /*
    A random string is generated using the key generator. The
-   key is passed to 'decryption' and the resulting string is
+   key is passed to 'encrypt_decrypt' and the resulting string is
    written to the password store.
 */
 void save_password(void)
@@ -46,7 +48,7 @@ void save_password(void)
    scanf("%s", password);
 
    key_generator(key,strlen(password));
-   decryption(password, encrypt, key);
+   encrypt_decrypt(password, encrypt, key);
    return_password(password, ref, encrypt, key, decrypt);
 }
 
@@ -99,7 +101,7 @@ void open_password(char password[100], char ref[100], char encrypt[100],
       for(i=0;i<40;i++){
           fscanf(fp,"%s %s %s \n", ref, encrypt, key);
           if(strcmp(ref, name)==0){
-             decryption(encrypt, decrypt, key);
+             encrypt_decrypt(encrypt, decrypt, key);
           }
       }
    }
@@ -154,10 +156,10 @@ extern void key_generator(char *key, int n)
 }
 
 /*
-   Decryption implements the XOR cipher. The result is stored
+   Encrypt_decrypt implements the XOR cipher. The result is stored
    into output.
 */
-void decryption(char *input, char *output, char *key)
+void encrypt_decrypt(char *input, char *output, char *key)
 {
    int i;
    int len;
@@ -201,7 +203,7 @@ void start_program(char password[100], char ref[100], char encrypt[100],
       }
    }
 
-   decryption(encrypt, decrypt, key);
+   encrypt_decrypt(encrypt, decrypt, key);
 
    while(strcmp(password, decrypt)!=0){
       printf("Incorrect entry. Please try again: ");
