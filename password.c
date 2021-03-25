@@ -3,8 +3,9 @@
    Simple Password Encrytper/decrypter
    -----------------------------------
 
-   This is a very basic password encryption/decryption
-   program which utilises an XOR cipher.
+   This is a very basic password encryption/
+   decryption program which utilises an XOR
+   cipher.
 
 */
 
