@@ -52,7 +52,45 @@ void save_password(void)
    return_password(password, ref, encrypt, key, decrypt);
 }
 
+/*
+   Random character from array is taken. This is repeated n
+   times to create a random string of length n.
+*/
+extern void key_generator(char *key, int n)
+{
+   int index = 0;
+   char strings[100] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
+   srand((unsigned int)(time(NULL)));
+
+   for(index = 0; index < n; index++){
+      key[index] = strings[rand() % (sizeof strings - 1)];
+   }
+
+   key[index]='\0';
+}
+
+/*
+   Encrypt_decrypt implements the XOR cipher. The result is stored
+   into output.
+*/
+void encrypt_decrypt(char *input, char *output, char *key)
+{
+   int i;
+   int len;
+
+   len = strlen(input);
+
+   for(i = 0; i < len; i++){
+      output[i] = input[i] ^ key[i];
+   }
+
+   output[i]='\0';
+}
+
+/*
+   Prints output including name, key and encrypted password.
+*/
 void return_password(char password[100], char ref[100], char encrypt[100],
                    char key[100], char decrypt[100])
 {
@@ -135,42 +173,6 @@ void display_names(char password[100], char ref[100], char encrypt[100],
    }
 
    start_program(password, ref, encrypt, key, decrypt);
-}
-
-/*
-   Random character from array is taken. This is repeated n
-   times to create a random string of length n.
-*/
-extern void key_generator(char *key, int n)
-{
-   int index = 0;
-   char strings[100] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-
-   srand((unsigned int)(time(NULL)));
-
-   for(index = 0; index < n; index++){
-      key[index] = strings[rand() % (sizeof strings - 1)];
-   }
-
-   key[index]='\0';
-}
-
-/*
-   Encrypt_decrypt implements the XOR cipher. The result is stored
-   into output.
-*/
-void encrypt_decrypt(char *input, char *output, char *key)
-{
-   int i;
-   int len;
-
-   len = strlen(input);
-
-   for(i = 0; i < len; i++){
-      output[i] = input[i] ^ key[i];
-   }
-
-   output[i]='\0';
 }
 
 /*
